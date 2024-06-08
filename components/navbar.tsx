@@ -6,19 +6,12 @@ import MainNav from '@/components/main-nav'
 import NavbarActions from '@/components/navbar-actions';
 
 import { Category } from '@/types';
+import getCategories from '@/actions/get-categories';
 
-export default function Navbar() {
-    const categories: Category[] = [
-        {
-            id: '1',
-            name: 'Clothing',
-            billboard: {
-                id: '1',
-                imageUrl: 'https://source.unsplash.com/featured/?clothing',
-                name: 'Clothing'
-            }
-        }
-    ];
+export const revalidate = 0;
+
+const Navbar = async () => {
+    const categories: Category[] = await getCategories();
 
     return (
         <div className='border-b'>
@@ -36,3 +29,5 @@ export default function Navbar() {
         </div>
     )
 }
+
+export default Navbar;
